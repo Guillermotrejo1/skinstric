@@ -33,7 +33,7 @@ const Landing = () => {
           </div>
         </button>
       </div>
-      <p className="absolute hidden lg:block left-4 bottom-4 ml-6 text-left text-lg font-semibold text-[#1a1b1c] max-w-[220px] lg:max-w-[300px]">
+      <p className="absolute hidden lg:block left-4 bottom-4 ml-6 text-left text-lg text-[#1a1b1c] max-w-[220px] lg:max-w-[300px]">
           Skinstric developed an A.I. that creates a highly-personalized routine
           tailored to what your skin needs.
         </p>
