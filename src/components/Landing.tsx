@@ -13,7 +13,7 @@ const Landing = () => {
         <h1 className="text-5xl md:text-6xl lg:text-[100px] text-center">
           Sophisticated <br /> skincare
         </h1>
-        <p className="text-[12px] font-semibold text-center text-[#1a1b1c83] mt-2 max-w-[220px] mb-2">
+        <p className="text-[12px] font-semibold text-center text-[#1A1B1C83] mt-2 max-w-[220px] mb-2 lg:hidden">
           Skinstric developed an A.I. that creates a highly-personalized routine
           tailored to what your skin needs.
         </p>
@@ -33,6 +33,10 @@ const Landing = () => {
           </div>
         </button>
       </div>
+      <p className="absolute hidden lg:block left-4 bottom-4 ml-6 text-left text-lg font-semibold text-[#1a1b1c] max-w-[220px] lg:max-w-[300px]">
+          Skinstric developed an A.I. that creates a highly-personalized routine
+          tailored to what your skin needs.
+        </p>
     </div>
   );
 };
