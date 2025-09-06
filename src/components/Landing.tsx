@@ -1,10 +1,12 @@
 import React from "react";
 import DiamondsMobile1 from "./shapes/DiamondsMobile1";
 import DiamondsMobile2 from "./shapes/DiamondsMobile2";
+import DiamondsDesktopLeft from "./shapes/DiamondsDesktopLeft";
+import DiamondsDesktopRight from "./shapes/DiamondsDesktopRight";
 
 const Landing = () => {
   return (
-    <div className="w-full h-screen flex items-center justify-center relative -translate-y-30">
+    <div className="w-full h-screen overflow-hidden flex items-center justify-center relative -translate-y-30">
       <div className="">
         <DiamondsMobile1 />
         <DiamondsMobile2 />
@@ -33,10 +35,12 @@ const Landing = () => {
           </div>
         </button>
       </div>
-      <p className="absolute hidden lg:block left-4 bottom-4 ml-6 text-left text-lg text-[#1a1b1c] max-w-[220px] lg:max-w-[300px]">
-          Skinstric developed an A.I. that creates a highly-personalized routine
-          tailored to what your skin needs.
-        </p>
+      <p className="absolute hidden lg:block left-0 bottom-4 ml-2 text-left text-lg text-[#1a1b1c] max-w-[220px] lg:max-w-[300px] leading-4.5">
+        Skinstric developed an A.I. that creates a highly-personalized routine
+        tailored to what your skin needs.
+      </p>
+      <DiamondsDesktopLeft/>
+      <DiamondsDesktopRight/>
     </div>
   );
 };
