@@ -19,7 +19,7 @@ const Landing = () => {
 
   
   return (
-    <div className="w-full h-screen overflow-hidden flex items-center justify-center relative -translate-y-30">
+    <div id="landing" className="w-full h-screen overflow-hidden flex items-center justify-center relative -translate-y-30">
       <div className="">
         <DiamondsMobile1 />
         <DiamondsMobile2 />
