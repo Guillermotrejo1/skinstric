@@ -20,7 +20,7 @@ const GalleryAccess = () => {
             className="absolute w-[100px] h-[100px] md:w-[136px] md:h-[136px] hover:scale-108 duration-700 ease-in-out cursor-pointer"
           />
           <div className="absolute top-[80%] top md:top-[70%] md:left-[20px] translate-y-[-10px]">
-            <p className="text-xs md:text-sm font-normal mt-5 md:mt-0 leading-[24px] text-right">
+            <div className="text-xs md:text-sm font-normal mt-5 md:mt-0 leading-[24px] text-right">
               ALLOW A.I <br /> ACCESS GALLERY
               <div className="">
                 <Image
@@ -31,7 +31,7 @@ const GalleryAccess = () => {
                   className="absolute hidden md:block md:right-[-67px] md:top-[-45px]"
                 />
               </div>
-            </p>
+            </div>
           </div>
         </div>
       </div>

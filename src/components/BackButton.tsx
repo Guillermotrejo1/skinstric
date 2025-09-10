@@ -28,7 +28,7 @@ const BackButton = () => {
           <div className="relative w-12 h-12 flex items-center justify-center border border-[#1A1B1C] rotate-45 scale-[1]">
             <span className="rotate-[-225deg] text-sm font-semibold">▶</span>
           </div>
-          <span className="ml-8 text-sm mt-3 font-semibold">BACK</span>
+          <span className="ml-8 text-sm mt-4 font-semibold">BACK</span>
         </div>
       </Link>
     </div>
