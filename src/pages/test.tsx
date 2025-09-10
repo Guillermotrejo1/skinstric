@@ -1,5 +1,4 @@
 import BackButton from "@/components/BackButton";
-import Navbar from "@/components/Navbar";
 import ProceedButton from "@/components/ProceedButton";
 import DiamondLarge from "@/components/shapes/DiamondLarge";
 import DiamondMedium from "@/components/shapes/DiamondMedium";
@@ -75,7 +74,6 @@ const Test = () => {
 
   return (
   <div>
-    <Navbar />
     <div className="min-h-[90vh] flex flex-col items-center justify-center bg-white text-center">
       <div className="absolute top-16 left-2 text-left">
         <h4 className="ml-6 text-xs font-semibold">TO START ANALYSIS</h4>
