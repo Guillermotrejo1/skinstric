@@ -10,7 +10,7 @@ const results = () => {
         <div className="absolute top-20 left-2 text-left">
           <h4 className="ml-6 text-sm font-semibold">TO START ANALYSIS</h4>
         </div>
-        <div className="flex-[0.4] md:flex-1 flex flex-col md:flex-row items-center lg:justify-between relative mb-40 md:mb-30 space-y-[-20px] md:space-y-0 w-full">
+        <div className="flex-[0.4] md:flex-1 flex flex-col md:flex-row items-center lg:justify-between relative mb-40 md:mb-40 space-y-[-20px] md:space-y-0 w-full">
           <FaceScan />
           <GalleryAccess />
           <div className="absolute top-[-75px] right-7 md:top-0 md:right-8 transition-opacity duration-300 opacity-100">
