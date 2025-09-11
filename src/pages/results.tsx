@@ -1,10 +1,6 @@
 import BackButton from "@/components/BackButton";
 import FaceScan from "@/components/FaceScan";
 import GalleryAccess from "@/components/GalleryAccess";
-import DiamondLarge from "@/components/shapes/DiamondLarge";
-import DiamondMedium from "@/components/shapes/DiamondMedium";
-import DiamondSmall from "@/components/shapes/DiamondSmall";
-import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 
@@ -54,7 +50,7 @@ const Results = () => {
 
       alert("Image analyzed successfully");
 
-      // Redirect to the /selecting page
+      
       router.push("/selecting");
     } catch (error) {
       alert("Upload failed");
@@ -79,7 +75,7 @@ const Results = () => {
             </div>
           </div>
 
-          {/* Preview Section */}
+          
           <div className="absolute top-[80px] right-7 md:top-[80px] md:right-8 transition-opacity duration-300 opacity-100">
             <h1 className="text-xs md:text-sm font-normal mb-1 text-left">
               Preview
@@ -96,7 +92,7 @@ const Results = () => {
             </div>
           </div>
 
-          {/* Loading Spinner */}
+          
           <div className="absolute top-1/2 left-1/2 -translate-x-[50%] -translate-y-1/2 w-[350px] h-[350px] md:w-[450px] md:h-[450px] animate-spin-fastest rotate-190 border-3 border-[#A0A4AB] border-dotted opacity-20"></div>
           <div className="absolute top-1/2 left-1/2 -translate-x-[50%] -translate-y-1/2 w-[300px] h-[300px] md:w-[400px] md:h-[400px] animate-spin-faster rotate-185 border-3 border-[#A0A4AB] border-dotted opacity-30"></div>
           <div className="absolute top-1/2 left-1/2 -translate-x-[50%] -translate-y-1/2 w-[220px] h-[220px] md:w-[350px] md:h-[350px] animate-spin-fast border-3 border-[#A0A4AB] border-dotted opacity-40"></div>
@@ -127,7 +123,7 @@ const Results = () => {
               </div>
             </div>
           </div>
-          {/* {demographics && (
+          {demographics && (
             <div>
               <h2>Demographics</h2>
               <p>Race:</p>
@@ -155,7 +151,7 @@ const Results = () => {
                 ))}
               </ul>
             </div>
-          )} */}
+          )}
         </div>
       )}
       <div className="fixed bottom-4 left-0 right-0 pt-4 md:pt-0 pb-8 bg-white z-50">

@@ -4,7 +4,7 @@ import React, { useState } from "react";
 
 const Report = () => {
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
-  const [percentage, setPercentage] = useState<number>(0); // Initialize percentage state
+  const [percentage, setPercentage] = useState<number>(0); 
 
   const races = [
     { name: "Southeast Asian", confidence: "73%" },
@@ -16,9 +16,9 @@ const Report = () => {
     { name: "Middle Eastern", confidence: "0%" },
   ];
 
-  const radius = 45; // Radius of the circle
-  const circumference = 2 * Math.PI * radius; // Circumference of the circle
-  const offset = circumference - (percentage / 100) * circumference; // Calculate the offset based on percentage
+  const radius = 45;
+  const circumference = 2 * Math.PI * radius;
+  const offset = circumference - (percentage / 100) * circumference; 
   
 
   return (
@@ -71,7 +71,7 @@ const Report = () => {
                   <div key={index} className={`flex items-center justify-between h-[48px] px-4 cursor-pointer ${selectedOption === index ? "bg-black text-white" : "hover:bg-[#E1E1E2]"}`} 
                     onClick={() => {
                       setSelectedOption(index);
-                      setPercentage(parseInt(race.confidence)); // Update percentage based on selected race
+                      setPercentage(parseInt(race.confidence)); 
                     }}>
                     <div className="flex items-center gap-1">
                       <Image width={12} height={12} src={selectedOption === index ? "/activeRadioButton.webp" : "/radioButton.webp"} alt="Radio button" />

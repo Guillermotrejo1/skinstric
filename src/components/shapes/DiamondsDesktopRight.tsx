@@ -11,7 +11,6 @@ const DiamondsDesktopRight = ({
   onMouseOut,
   className,
 }: Props) => {
-
   return (
     <>
       <div className={className}>
@@ -25,8 +24,7 @@ const DiamondsDesktopRight = ({
             <span>TAKE TEST</span>
             <div className="w-[30px] h-[30px] border border-solid border-black rotate-45 cursor-pointer group-hover:scale-110 duration-300"></div>
             <span className="absolute right-[18px] top-[8px] scale-[0.9] rotate-0 group-hover:scale-105 duration-300">
-              {" "}
-              ▶{" "}
+              ▶
             </span>
           </button>
         </Link>
