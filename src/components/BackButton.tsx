@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 
@@ -16,9 +15,8 @@ const BackButton = () => {
   return (
     <div
       onClick={handleBackClick}
-      className="absolute left-2 bottom-38.5 md:bottom-8 flex justify-between md:px-9 px-13"
+      className="absolute left-2 bottom-38.5 md:bottom-8 flex justify-between md:px-9 px-13 cursor-pointer"
     >
-      <Link href="/" aria-label="Back" className="inset-0">
         <div className="relative w-12 h-12 flex items-center justify-center border border-[#1A1B1C] rotate-45 scale-[1] md:hidden">
           <span className="rotate-[-45deg] text-sm font-semibold md:hidden">
             Back
@@ -30,7 +28,6 @@ const BackButton = () => {
           </div>
           <span className="ml-8 text-sm mt-4 font-semibold">BACK</span>
         </div>
-      </Link>
     </div>
   );
 };

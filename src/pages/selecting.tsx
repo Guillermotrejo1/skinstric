@@ -79,5 +79,3 @@ const Selecting = () => {
 };
 
 export default Selecting;
-
-//todo ** fix the buttons on mobile and add the animation to the selected triangles on hover

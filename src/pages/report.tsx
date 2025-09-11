@@ -19,6 +19,7 @@ const Report = () => {
   const radius = 45; // Radius of the circle
   const circumference = 2 * Math.PI * radius; // Circumference of the circle
   const offset = circumference - (percentage / 100) * circumference; // Calculate the offset based on percentage
+  
 
   return (
     <div className="h-screen md:h-[90vh] flex flex-col md:mt-5">
