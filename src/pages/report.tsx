@@ -73,7 +73,7 @@ const Report = () => {
                       setPercentage(parseInt(race.confidence)); // Update percentage based on selected race
                     }}>
                     <div className="flex items-center gap-1">
-                      <Image width={12} height={12} src="/activeRadioButton.webp" alt="Radio button" />
+                      <Image width={12} height={12} src={selectedOption === index ? "/activeRadioButton.webp" : "/radioButton.webp"} alt="Radio button" />
                       <span className="font-normal text-base leading-6 tracking-tight"> {race.name} </span>
                     </div>
                     <span className="font-normal text-base leading-6 tracking-tight"> {race.confidence} </span>
