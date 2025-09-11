@@ -59,12 +59,10 @@ const selecting = () => {
             </div>
           </div>
         </div>
-        <div className="pt-4 md:pt-12 pb-8 bg-white sticky md:static bottom-40 mb-0 md:mb-0">
           <div className="flex justify-between max-w-full mx-auto px-13 md:px-9">
             <BackButton/>
             <SummaryButton/>
           </div>
-        </div>
       </div>
     </>
   );
@@ -72,4 +70,4 @@ const selecting = () => {
 
 export default selecting;
 
-//todo ** fix the buttons on mobile and adde the animation to the selected triangles on hover
+//todo ** fix the buttons on mobile and add the animation to the selected triangles on hover
