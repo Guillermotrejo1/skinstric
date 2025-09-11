@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 const report = () => {
@@ -46,8 +47,7 @@ const report = () => {
                     <path className="CircularProgressbar-path"></path>
                   </svg>
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <p className="text-3xl md:text-[40px] font-normal">73</p>
-                    <span className="absolute text-xl md:text-3xl">%</span>
+                    <p className="text-3xl md:text-[40px] font-normal">73%</p>
                   </div>
                 </div>
               </div>
@@ -66,13 +66,9 @@ const report = () => {
                     A.I. CONFIDENCE
                   </h4>
                 </div>
-                <div className="flex items-center justify-between h-[48px] hover:bg-[#E1E1E2] px-4 cursor-pointer bg-[#1A1B1C] text-white hover:bg-black">
+                <div className="flex items-center justify-between h-[48px]  px-4 cursor-pointer bg-[#1A1B1C] text-white hover:bg-black">
                   <div className="flex items-center gap-1">
-                    <img
-                      src=""
-                      alt="Radio button"
-                      className="w-[12px] h-[12px] mr-2"
-                    />
+                    <Image width={12} height={12} src="/activeRadioButton.webp" alt="Radio button" />
                     <span className="font-normal text-base leading-6 tracking-tight">
                       Southeast asian
                     </span>
@@ -83,11 +79,7 @@ const report = () => {
                 </div>
                 <div className="flex items-center justify-between h-[48px] hover:bg-[#E1E1E2] px-4 cursor-pointer">
                   <div className="flex items-center gap-1">
-                    <img
-                      src=""
-                      alt="Radio button"
-                      className="w-[12px] h-[12px] mr-2"
-                    />
+                    <Image width={12} height={12} src="/activeRadioButton.webp" alt="Radio button" />
                     <span className="font-normal text-base leading-6 tracking-tight">
                       White
                     </span>
@@ -98,11 +90,7 @@ const report = () => {
                 </div>
                 <div className="flex items-center justify-between h-[48px] hover:bg-[#E1E1E2] px-4 cursor-pointer">
                   <div className="flex items-center gap-1">
-                    <img
-                      src=""
-                      alt="Radio button"
-                      className="w-[12px] h-[12px] mr-2"
-                    />
+                    <Image width={12} height={12} src="/activeRadioButton.webp" alt="Radio button" />
                     <span className="font-normal text-base leading-6 tracking-tight">
                       Latino hispanic
                     </span>
@@ -113,11 +101,7 @@ const report = () => {
                 </div>
                 <div className="flex items-center justify-between h-[48px] hover:bg-[#E1E1E2] px-4 cursor-pointer">
                   <div className="flex items-center gap-1">
-                    <img
-                      src=""
-                      alt="Radio button"
-                      className="w-[12px] h-[12px] mr-2"
-                    />
+                    <Image width={12} height={12} src="/activeRadioButton.webp" alt="Radio button" />
                     <span className="font-normal text-base leading-6 tracking-tight">
                       black
                     </span>
@@ -128,11 +112,7 @@ const report = () => {
                 </div>
                 <div className="flex items-center justify-between h-[48px] hover:bg-[#E1E1E2] px-4 cursor-pointer">
                   <div className="flex items-center gap-1">
-                    <img
-                      src=""
-                      alt="Radio button"
-                      className="w-[12px] h-[12px] mr-2"
-                    />
+                    <Image width={12} height={12} src="/activeRadioButton.webp" alt="Radio button" />
                     <span className="font-normal text-base leading-6 tracking-tight">
                       South asian
                     </span>
@@ -143,11 +123,7 @@ const report = () => {
                 </div>
                 <div className="flex items-center justify-between h-[48px] hover:bg-[#E1E1E2] px-4 cursor-pointer">
                   <div className="flex items-center gap-1">
-                    <img
-                      src=""
-                      alt="Radio button"
-                      className="w-[12px] h-[12px] mr-2"
-                    />
+                    <Image width={12} height={12} src="/activeRadioButton.webp" alt="Radio button" />
                     <span className="font-normal text-base leading-6 tracking-tight">
                       East asian
                     </span>
@@ -158,11 +134,7 @@ const report = () => {
                 </div>
                 <div className="flex items-center justify-between h-[48px] hover:bg-[#E1E1E2] px-4 cursor-pointer">
                   <div className="flex items-center gap-1">
-                    <img
-                      src=""
-                      alt="Radio button"
-                      className="w-[12px] h-[12px] mr-2"
-                    />
+                    <Image width={12} height={12} src="/activeRadioButton.webp" alt="Radio button" />
                     <span className="font-normal text-base leading-6 tracking-tight">
                       Middle eastern
                     </span>
@@ -193,14 +165,20 @@ const report = () => {
                 </div>
               </a>
               <a href="/se">
-              <div className=" w-12 h-12 flex items-center justify-center border border-[#1A1B1C] rotate-45 scale-[1] sm:hidden">
-                <span className="rotate-[-45deg] text-xs font-semibold sm:hidden">HOME</span>
-              </div>
-              <div className="hidden sm:flex flex-row relative justify-center items-center">
-                <span className="text-sm font-semibold hidden sm:block mr-5">HOME</span>
-                <div className=" w-12 h-12 hidden sm:flex justify-center border border-[#1A1B1C] rotate-45 scale-[0.85]"></div>
-                <span className="absolute right-[15px] bottom-[13px] scale-[0.9] hidden sm:block">▶</span>
-              </div>
+                <div className=" w-12 h-12 flex items-center justify-center border border-[#1A1B1C] rotate-45 scale-[1] sm:hidden">
+                  <span className="rotate-[-45deg] text-xs font-semibold sm:hidden">
+                    HOME
+                  </span>
+                </div>
+                <div className="hidden sm:flex flex-row relative justify-center items-center">
+                  <span className="text-sm font-semibold hidden sm:block mr-5">
+                    HOME
+                  </span>
+                  <div className=" w-12 h-12 hidden sm:flex justify-center border border-[#1A1B1C] rotate-45 scale-[0.85]"></div>
+                  <span className="absolute right-[15px] bottom-[13px] scale-[0.9] hidden sm:block">
+                    ▶
+                  </span>
+                </div>
               </a>
             </div>
           </div>
