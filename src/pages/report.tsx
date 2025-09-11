@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import React, { useState } from "react";
 
 const Report = () => {
@@ -83,7 +84,7 @@ const Report = () => {
           </div>
           <div className="pt-4 md:pt-[37px] pb-6 bg-white sticky bottom-40 md:static md:bottom-0 mb-8 md:mb-16">
             <div className="flex justify-between">
-              <a href="/select" className="flex items-center">
+              <Link href="/selecting" className="flex items-center">
                 <div className="relative w-12 h-12 flex items-center justify-center border border-[#1A1B1C] rotate-45 scale-[1] sm:hidden">
                   <span className="rotate-[-45deg] text-xs font-semibold sm:hidden"> BACK </span>
                 </div>
@@ -92,8 +93,8 @@ const Report = () => {
                   <span className="absolute left-[15px] bottom-[13px] scale-[0.9] rotate-180 hidden sm:block group-hover:scale-[0.92] ease duration-300"> ▶ </span>
                   <span className="text-sm font-semibold hidden sm:block ml-6"> BACK </span>
                 </div>
-              </a>
-              <a href="/se">
+              </Link>
+              <Link href="/">
                 <div className=" w-12 h-12 flex items-center justify-center border border-[#1A1B1C] rotate-45 scale-[1] sm:hidden">
                   <span className="rotate-[-45deg] text-xs font-semibold sm:hidden"> HOME </span>
                 </div>
@@ -102,7 +103,7 @@ const Report = () => {
                   <div className=" w-12 h-12 hidden sm:flex justify-center border border-[#1A1B1C] rotate-45 scale-[0.85]"></div>
                   <span className="absolute right-[15px] bottom-[13px] scale-[0.9] hidden sm:block"> ▶ </span>
                 </div>
-              </a>
+              </Link>
             </div>
           </div>
         </div>
