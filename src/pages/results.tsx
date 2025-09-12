@@ -12,7 +12,7 @@ interface Demographics {
 
 const Results = () => {
   const [image, setImage] = useState<string | ArrayBuffer | null>(null);
-  const [demographics, setDemographics] = useState<Demographics | null>(null);
+  const [, setDemographics] = useState<Demographics | null>(null);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
@@ -119,35 +119,6 @@ const Results = () => {
               </div>
             </div>
           </div>
-          {demographics && (
-            <div>
-              <h2>Demographics</h2>
-              <p>Race:</p>
-              <ul>
-                {Object.keys(demographics.race).map((race) => (
-                  <li key={race}>
-                    {race}: {demographics.race[race]}
-                  </li>
-                ))}
-              </ul>
-              <p>Age:</p>
-              <ul>
-                {Object.keys(demographics.age).map((age) => (
-                  <li key={age}>
-                    {age}: {demographics.age[age]}
-                  </li>
-                ))}
-              </ul>
-              <p>Gender:</p>
-              <ul>
-                {Object.keys(demographics.gender).map((gender) => (
-                  <li key={gender}>
-                    {gender}: {demographics.gender[gender]}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
         </div>
       )}
       <div className="fixed bottom-4 left-0 right-0 pt-4 md:pt-0 pb-8 bg-white z-50">
@@ -159,4 +130,4 @@ const Results = () => {
 
 export default Results;
 
-//stopped at getting the image to upload, work on the loading state and getting the info to the report page correctly
+
