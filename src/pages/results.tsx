@@ -74,8 +74,6 @@ const Results = () => {
               <span className="text-7xl dot"></span>
             </div>
           </div>
-
-          
           <div className="absolute top-[80px] right-7 md:top-[80px] md:right-8 transition-opacity duration-300 opacity-100">
             <h1 className="text-xs md:text-sm font-normal mb-1 text-left">
               Preview
@@ -91,8 +89,6 @@ const Results = () => {
               )}
             </div>
           </div>
-
-          
           <div className="absolute top-1/2 left-1/2 -translate-x-[50%] -translate-y-1/2 w-[350px] h-[350px] md:w-[450px] md:h-[450px] animate-spin-fastest rotate-190 border-3 border-[#A0A4AB] border-dotted opacity-20"></div>
           <div className="absolute top-1/2 left-1/2 -translate-x-[50%] -translate-y-1/2 w-[300px] h-[300px] md:w-[400px] md:h-[400px] animate-spin-faster rotate-185 border-3 border-[#A0A4AB] border-dotted opacity-30"></div>
           <div className="absolute top-1/2 left-1/2 -translate-x-[50%] -translate-y-1/2 w-[220px] h-[220px] md:w-[350px] md:h-[350px] animate-spin-fast border-3 border-[#A0A4AB] border-dotted opacity-40"></div>
