@@ -8,11 +8,14 @@ interface Demographics {
   gender: { [key: string]: number };
 }
 
+type DemographicCategory = "race" | "age" | "gender";
+
 const Report = () => {
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [percentage, setPercentage] = useState<number>(0);
   const [demographics, setDemographics] = useState<Demographics | null>(null);
-  const [selectedDemographic, setSelectedDemographic] = useState(null);
+  const [selectedDemographic, setSelectedDemographic] =
+    useState<DemographicCategory>("race");
 
   useEffect(() => {
     const storedDemographics = localStorage.getItem("demographics");
@@ -21,49 +24,90 @@ const Report = () => {
     }
   }, []);
 
+  // Get sorted keys for each category
   const sortedRaces = demographics?.race
     ? Object.keys(demographics.race).sort(
         (a, b) => demographics.race[b] - demographics.race[a]
       )
     : [];
+  const sortedAges = demographics?.age
+    ? Object.keys(demographics.age).sort(
+        (a, b) => demographics.age[b] - demographics.age[a]
+      )
+    : [];
+  const sortedGenders = demographics?.gender
+    ? Object.keys(demographics.gender).sort(
+        (a, b) => demographics.gender[b] - demographics.gender[a]
+      )
+    : [];
 
+  // Top values for each category
   const topRace = sortedRaces[0] || "";
-  const topAge =
-    demographics && demographics.age
-      ? Object.keys(demographics.age).sort(
-          (a, b) => demographics.age[b] - demographics.age[a]
-        )[0]
-      : "";
-  const topGender =
-    demographics && demographics.gender
-      ? Object.keys(demographics.gender).sort(
-          (a, b) => demographics.gender[b] - demographics.gender[a]
-        )[0]
-      : "";
+  const topAge = sortedAges[0] || "";
+  const topGender = sortedGenders[0] || "";
 
-  const progressRace =
-    selectedOption !== null && sortedRaces[selectedOption]
-      ? sortedRaces[selectedOption]
-      : topRace;
+  // For progress bar and list
+  const sortedList =
+    selectedDemographic === "race"
+      ? sortedRaces
+      : selectedDemographic === "age"
+      ? sortedAges
+      : sortedGenders;
 
+  // For progress bar label
+  const progressLabel =
+    selectedOption !== null && sortedList[selectedOption]
+      ? sortedList[selectedOption]
+      : sortedList[0] || "";
+
+  // For progress bar value
   const progressValue =
-    demographics && selectedOption !== null
-      ? Math.round((demographics.race[sortedRaces[selectedOption]] || 0) * 100)
-      : 0;
+  demographics &&
+  progressLabel &&
+  demographics[selectedDemographic as keyof Demographics] &&
+  typeof demographics[selectedDemographic as keyof Demographics] === "object"
+    ? Math.round(
+        ((demographics[selectedDemographic as keyof Demographics] as {
+          [key: string]: number;
+        })[progressLabel as string] || 0) * 100
+      )
+    : 0;
 
-  // Update percentage when selectedOption changes
+  // Update percentage when selectedOption or demographic changes
   useEffect(() => {
     setPercentage(progressValue);
-  }, [progressValue, selectedOption, demographics]);
+  }, [progressValue, selectedOption, selectedDemographic, demographics]);
 
-  const handleUpdateDemographic = (demographic: string) => {
-    setSelectedOption(sortedRaces.indexOf(demographic));
+  // Handle click on category (Race, Age, Sex)
+  const handleCategoryClick = (category: DemographicCategory) => {
+    setSelectedDemographic(category);
+    setSelectedOption(null);
   };
 
+  // Handle click on option in the list
+  const handleUpdateDemographic = (option: string) => {
+    setSelectedOption(sortedList.indexOf(option));
+  };
 
   const radius = 45;
   const circumference = 2 * Math.PI * radius;
   const offset = circumference - (percentage / 100) * circumference;
+
+  // Helper for display
+  const getDisplayValue = (category: DemographicCategory, value: string) => {
+    if (!demographics) return "-";
+    if (category === "race") {
+      return value.charAt(0).toUpperCase() + value.slice(1);
+    }
+    if (category === "age") {
+      return value;
+    }
+    if (category === "gender") {
+      return value.toUpperCase();
+    }
+    return "-";
+  };
+  
 
   return (
     <div className="h-screen md:h-[90vh] flex flex-col md:mt-5">
@@ -82,22 +126,36 @@ const Report = () => {
           </div>
           <div className="grid md:grid-cols-[1.5fr_8.5fr_3.15fr] gap-4 mt-10 mb-40 md:gap-4 pb-0 md:pb-0 md:mb-0">
             <div className="bg-white-100 space-y-3 md:flex md:flex-col h-[62%]">
-              <div className="p-3 cursor-pointer bg-[#1A1B1C] text-white flex-1 flex flex-col justify-between hover:bg-[#E1E1E2] border-t">
-                <p className="text-base font-semibold">{topRace.charAt(0).toUpperCase() + topRace.slice(1) || "-"}</p>
-                <h4 className="text-base font-semibold mb-1">RACE</h4>
-              </div>
-              <div className="p-3 cursor-pointer bg-[#F3F3F4] flex-1 flex flex-col justify-between hover:bg-[#E1E1E2] border-t">
-                <p className="text-base font-semibold">{topAge || "-"}</p>
-                <h4 className="text-base font-semibold mb-1">AGE</h4>
-              </div>
-              <div className="p-3 cursor-pointer bg-[#F3F3F4] flex-1 flex flex-col justify-between hover:bg-[#E1E1E2] border-t">
-                <p className="text-base font-semibold">{topGender.toUpperCase() || "-"}</p>
-                <h4 className="text-base font-semibold mb-1">SEX</h4>
-              </div>
+              {(
+                [
+                  { label: "RACE", value: topRace, category: "race" },
+                  { label: "AGE", value: topAge, category: "age" },
+                  { label: "SEX", value: topGender, category: "gender" },
+                ] as {
+                  label: string;
+                  value: string;
+                  category: DemographicCategory;
+                }[]
+              ).map((item) => (
+                <div
+                  key={item.label}
+                  className={`p-3 cursor-pointer flex-1 flex flex-col justify-between border-t ${
+                    selectedDemographic === item.category
+                      ? "bg-[#1A1B1C] text-white"
+                      : "bg-[#F3F3F4] hover:bg-[#E1E1E2] text-black"
+                  }`}
+                  onClick={() => handleCategoryClick(item.category)}
+                >
+                  <p className="text-base font-semibold">
+                    {getDisplayValue(item.category, item.value) || "-"}
+                  </p>
+                  <h4 className="text-base font-semibold mb-1">{item.label}</h4>
+                </div>
+              ))}
             </div>
             <div className="relative bg-gray-100 p-4 flex flex-col items-center justify-center md:h-[57vh] md:border-t">
               <p className="hidden md:block md:absolute text-[40px] mb-2 left-5 top-2">
-                {progressRace.charAt(0).toUpperCase() + progressRace.slice(1) || "-"}
+                {getDisplayValue(selectedDemographic, progressLabel) || "-"}
               </p>
               <div className="relative md:absolute w-full max-w-[384px] aspect-square mb-4 md:right-5 md:bottom-2">
                 <svg
@@ -140,21 +198,21 @@ const Report = () => {
               <div className="space-y-0">
                 <div className="flex justify-between px-4">
                   <h4 className="text-base leading-[24px] tracking-tight font-medium mb-2">
-                    RACE
+                    {selectedDemographic.toUpperCase()}
                   </h4>
                   <h4 className="text-base leading-[24px] tracking-tight font-medium mb-2">
                     A.I. CONFIDENCE
                   </h4>
                 </div>
-                {sortedRaces.map((race, index) => (
+                {sortedList.map((option, index) => (
                   <div
-                    key={race}
+                    key={option}
                     className={`flex items-center justify-between h-[48px] px-4 cursor-pointer ${
                       selectedOption === index
                         ? "bg-black text-white"
                         : "hover:bg-[#E1E1E2]"
                     }`}
-                    onClick={() => handleUpdateDemographic(race)}
+                    onClick={() => handleUpdateDemographic(option)}
                   >
                     <div className="flex items-center gap-1">
                       <Image
@@ -168,12 +226,22 @@ const Report = () => {
                         alt="Radio button"
                       />
                       <span className="font-normal text-base leading-6 tracking-tight">
-                        {race.charAt(0).toUpperCase() + race.slice(1)}
+                        {getDisplayValue(selectedDemographic, option)}
                       </span>
                     </div>
                     <span className="font-normal text-base leading-6 tracking-tight">
-                      {demographics
-                        ? `${Math.round((demographics.race[race] || 0) * 100)}%`
+                      {demographics &&
+                      demographics[selectedDemographic as keyof Demographics] &&
+                      typeof demographics[
+                        selectedDemographic as keyof Demographics
+                      ] === "object"
+                        ? `${Math.round(
+                            ((
+                              demographics[
+                                selectedDemographic as keyof Demographics
+                              ] as { [key: string]: number }
+                            )[option] || 0) * 100
+                          )}%`
                         : "—"}
                     </span>
                   </div>
