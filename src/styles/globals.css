@@ -149,3 +149,14 @@ body {
 .fade-in-jump {
   animation: fadeInJump 2s ease forwards;
 }
+
+.diamond-outline {
+  width: 0;
+  height: 0;
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  border-bottom: 100px solid transparent; /* This will create the top part of the diamond */
+  border-top: 100px solid #000; /* This will create the bottom part of the diamond */
+  position: relative;
+  margin: 50px; /* Adjust margin as needed */
+}
