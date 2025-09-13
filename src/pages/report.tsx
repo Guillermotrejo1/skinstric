@@ -149,22 +149,35 @@ const Report = () => {
                   value: string;
                   category: DemographicCategory;
                 }[]
-              ).map((item) => (
-                <div
-                  key={item.label}
-                  className={`p-3 cursor-pointer flex-1 flex flex-col justify-between border-t ${
-                    selectedDemographic === item.category
-                      ? "bg-[#1A1B1C] text-white"
-                      : "bg-[#F3F3F4] hover:bg-[#E1E1E2] text-black"
-                  }`}
-                  onClick={() => handleCategoryClick(item.category)}
-                >
-                  <p className="text-base font-semibold">
-                    {getDisplayValue(item.category, item.value) || "-"}
-                  </p>
-                  <h4 className="text-base font-semibold mb-1">{item.label}</h4>
-                </div>
-              ))}
+              ).map((item) => {
+                // If this category is selected, show the selected value, else show the top value
+                let displayValue = item.value;
+                if (
+                  selectedDemographic === item.category &&
+                  selectedOption !== null &&
+                  sortedList[selectedOption]
+                ) {
+                  displayValue = sortedList[selectedOption];
+                }
+                return (
+                  <div
+                    key={item.label}
+                    className={`p-3 cursor-pointer flex-1 flex flex-col justify-between border-t ${
+                      selectedDemographic === item.category
+                        ? "bg-[#1A1B1C] text-white"
+                        : "bg-[#F3F3F4] hover:bg-[#E1E1E2] text-black"
+                    }`}
+                    onClick={() => handleCategoryClick(item.category)}
+                  >
+                    <p className="text-base font-semibold">
+                      {getDisplayValue(item.category, displayValue) || "-"}
+                    </p>
+                    <h4 className="text-base font-semibold mb-1">
+                      {item.label}
+                    </h4>
+                  </div>
+                );
+              })}
             </div>
             <div className="relative bg-gray-100 p-4 flex flex-col items-center justify-center md:h-[57vh] md:border-t">
               <p className="hidden md:block md:absolute text-[40px] mb-2 left-5 top-2">
