@@ -3,32 +3,35 @@ import Image from "next/image";
 import ResultDiamondLarge from "./ResultDiamondLarge";
 import ResultDiamondMedium from "./ResultDiamondMedium";
 import ResultDiamondSmall from "./ResultDiamondSmall";
+import { useRouter } from "next/router";
 
 const FaceScan = () => {
-  // State to manage the visibility of the toast
   const [showToast, setShowToast] = useState(false);
+  const router = useRouter();
 
-  // Function to handle the face scan button click
   const handleFaceScanClick = () => {
-    setShowToast(true); // Show the toast when the button is clicked
+    setShowToast(true);
   };
 
-  // Function to handle allowing camera access
+  
   const handleAllow = () => {
-    // Logic to request camera access
     navigator.mediaDevices
       .getUserMedia({ video: true })
       .then((stream) => {
         console.log("Camera access granted");
-        // Handle the stream (e.g., display it in a video element)
+        setShowToast(false);
+        router.push("/camera");
+        setTimeout(() => {
+          router.push("/camera/capture");
+        }, 3000);
       })
       .catch((error) => {
         console.error("Camera access denied", error);
+        setShowToast(false);
       });
-    setShowToast(false); // Hide the toast after allowing access
   };
 
-  // Function to handle denying camera access
+
   const handleDeny = () => {
     console.log("Camera access denied");
     setShowToast(false); 
