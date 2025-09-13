@@ -12,6 +12,7 @@ const Report = () => {
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [percentage, setPercentage] = useState<number>(0);
   const [demographics, setDemographics] = useState<Demographics | null>(null);
+  const [selectedDemographic, setSelectedDemographic] = useState(null);
 
   useEffect(() => {
     const storedDemographics = localStorage.getItem("demographics");
@@ -59,6 +60,7 @@ const Report = () => {
     setSelectedOption(sortedRaces.indexOf(demographic));
   };
 
+
   const radius = 45;
   const circumference = 2 * Math.PI * radius;
   const offset = circumference - (percentage / 100) * circumference;
@@ -81,7 +83,7 @@ const Report = () => {
           <div className="grid md:grid-cols-[1.5fr_8.5fr_3.15fr] gap-4 mt-10 mb-40 md:gap-4 pb-0 md:pb-0 md:mb-0">
             <div className="bg-white-100 space-y-3 md:flex md:flex-col h-[62%]">
               <div className="p-3 cursor-pointer bg-[#1A1B1C] text-white flex-1 flex flex-col justify-between hover:bg-[#E1E1E2] border-t">
-                <p className="text-base font-semibold">{topRace || "-"}</p>
+                <p className="text-base font-semibold">{topRace.charAt(0).toUpperCase() + topRace.slice(1) || "-"}</p>
                 <h4 className="text-base font-semibold mb-1">RACE</h4>
               </div>
               <div className="p-3 cursor-pointer bg-[#F3F3F4] flex-1 flex flex-col justify-between hover:bg-[#E1E1E2] border-t">
@@ -89,13 +91,13 @@ const Report = () => {
                 <h4 className="text-base font-semibold mb-1">AGE</h4>
               </div>
               <div className="p-3 cursor-pointer bg-[#F3F3F4] flex-1 flex flex-col justify-between hover:bg-[#E1E1E2] border-t">
-                <p className="text-base font-semibold">{topGender || "-"}</p>
+                <p className="text-base font-semibold">{topGender.toUpperCase() || "-"}</p>
                 <h4 className="text-base font-semibold mb-1">SEX</h4>
               </div>
             </div>
             <div className="relative bg-gray-100 p-4 flex flex-col items-center justify-center md:h-[57vh] md:border-t">
               <p className="hidden md:block md:absolute text-[40px] mb-2 left-5 top-2">
-                {progressRace || "-"}
+                {progressRace.charAt(0).toUpperCase() + progressRace.slice(1) || "-"}
               </p>
               <div className="relative md:absolute w-full max-w-[384px] aspect-square mb-4 md:right-5 md:bottom-2">
                 <svg
@@ -166,12 +168,10 @@ const Report = () => {
                         alt="Radio button"
                       />
                       <span className="font-normal text-base leading-6 tracking-tight">
-                        {" "}
-                        {race}{" "}
+                        {race.charAt(0).toUpperCase() + race.slice(1)}
                       </span>
                     </div>
                     <span className="font-normal text-base leading-6 tracking-tight">
-                      {" "}
                       {demographics
                         ? `${Math.round((demographics.race[race] || 0) * 100)}%`
                         : "—"}
