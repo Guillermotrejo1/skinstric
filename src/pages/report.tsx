@@ -32,7 +32,7 @@ const Report = () => {
     : [];
   const sortedAges = demographics?.age
     ? Object.keys(demographics.age).sort(
-        (a, b) => demographics.age[b] - demographics.age[a]
+        (a, b) => demographics.age[a] + demographics.age[b]
       )
     : [];
   const sortedGenders = demographics?.gender
@@ -42,9 +42,16 @@ const Report = () => {
     : [];
 
   // Top values for each category
-  const topRace = sortedRaces[0] || "";
-  const topAge = sortedAges[0] || "";
-  const topGender = sortedGenders[0] || "";
+  const topValues = {
+    race: sortedRaces[0] || "",
+    age: demographics?.age
+      ? Object.keys(demographics.age).reduce(
+          (a, b) => (demographics.age[a] > demographics.age[b] ? a : b),
+          ""
+        )
+      : "",
+    gender: sortedGenders[0] || "",
+  };
 
   // For progress bar and list
   const sortedList =
@@ -62,16 +69,18 @@ const Report = () => {
 
   // For progress bar value
   const progressValue =
-  demographics &&
-  progressLabel &&
-  demographics[selectedDemographic as keyof Demographics] &&
-  typeof demographics[selectedDemographic as keyof Demographics] === "object"
-    ? Math.round(
-        ((demographics[selectedDemographic as keyof Demographics] as {
-          [key: string]: number;
-        })[progressLabel as string] || 0) * 100
-      )
-    : 0;
+    demographics &&
+    progressLabel &&
+    demographics[selectedDemographic as keyof Demographics] &&
+    typeof demographics[selectedDemographic as keyof Demographics] === "object"
+      ? Math.round(
+          ((
+            demographics[selectedDemographic as keyof Demographics] as {
+              [key: string]: number;
+            }
+          )[progressLabel as string] || 0) * 100
+        )
+      : 0;
 
   // Update percentage when selectedOption or demographic changes
   useEffect(() => {
@@ -107,7 +116,11 @@ const Report = () => {
     }
     return "-";
   };
-  
+
+  const topIndex =
+    selectedOption !== null
+      ? selectedOption
+      : sortedList.indexOf(topValues[selectedDemographic]);
 
   return (
     <div className="h-screen md:h-[90vh] flex flex-col md:mt-5">
@@ -128,9 +141,9 @@ const Report = () => {
             <div className="bg-white-100 space-y-3 md:flex md:flex-col h-[62%]">
               {(
                 [
-                  { label: "RACE", value: topRace, category: "race" },
-                  { label: "AGE", value: topAge, category: "age" },
-                  { label: "SEX", value: topGender, category: "gender" },
+                  { label: "RACE", value: topValues.race, category: "race" },
+                  { label: "AGE", value: topValues.age, category: "age" },
+                  { label: "SEX", value: topValues.gender, category: "gender" },
                 ] as {
                   label: string;
                   value: string;
@@ -208,7 +221,7 @@ const Report = () => {
                   <div
                     key={option}
                     className={`flex items-center justify-between h-[48px] px-4 cursor-pointer ${
-                      selectedOption === index
+                      topIndex === index || selectedOption === index
                         ? "bg-black text-white"
                         : "hover:bg-[#E1E1E2]"
                     }`}
