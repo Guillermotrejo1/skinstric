@@ -41,13 +41,7 @@ const Report = () => {
         (a, b) => demographics.race[b] - demographics.race[a]
       )
     : [];
-
-  const sortedAges = demographics?.age
-    ? Object.keys(demographics.age).sort(
-        (a, b) => demographics.age[b] - demographics.age[a]
-      )
-    : [];
-
+    
   const sortedGenders = demographics?.gender
     ? Object.keys(demographics.gender).sort(
         (a, b) => demographics.gender[b] - demographics.gender[a]
