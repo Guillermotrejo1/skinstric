@@ -18,7 +18,7 @@ const ageOrder = [
   "40-49",
   "50-59",
   "60-69",
-  "70+"
+  "70+",
 ];
 
 const Report = () => {
@@ -43,10 +43,10 @@ const Report = () => {
     : [];
 
   const sortedAges = demographics?.age
-  ? Object.keys(demographics.age).sort(
-      (a, b) => demographics.age[b] - demographics.age[a]
-    )
-  : [];
+    ? Object.keys(demographics.age).sort(
+        (a, b) => demographics.age[b] - demographics.age[a]
+      )
+    : [];
 
   const sortedGenders = demographics?.gender
     ? Object.keys(demographics.gender).sort(
@@ -66,12 +66,12 @@ const Report = () => {
     gender: sortedGenders[0] || "",
   };
 
- const sortedList =
-  selectedDemographic === "race"
-    ? sortedRaces
-    : selectedDemographic === "age"
-    ? ageOrder
-    : sortedGenders;
+  const sortedList =
+    selectedDemographic === "race"
+      ? sortedRaces
+      : selectedDemographic === "age"
+      ? ageOrder
+      : sortedGenders;
 
   // For progress bar label
   const progressLabel =
@@ -98,6 +98,20 @@ const Report = () => {
   useEffect(() => {
     setPercentage(progressValue);
   }, [progressValue, selectedOption, selectedDemographic, demographics]);
+  
+  useEffect(() => {
+    if (
+      demographics &&
+      selectedOption === null &&
+      topValues[selectedDemographic]
+    ) {
+      const topIndex = sortedList.indexOf(topValues[selectedDemographic]);
+      if (topIndex !== -1) {
+        setSelectedOption(topIndex);
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [demographics, selectedDemographic]);
 
   // Handle click on category (Race, Age, Sex)
   const handleCategoryClick = (category: DemographicCategory) => {
@@ -194,7 +208,9 @@ const Report = () => {
               <p className="hidden md:block md:absolute text-[40px] mb-2 left-5 top-2">
                 {getDisplayValue(
                   selectedDemographic,
-                  topValues[selectedDemographic]
+                  selectedOption !== null && sortedList[selectedOption]
+                    ? sortedList[selectedOption]
+                    : topValues[selectedDemographic]
                 ) || "-"}
                 {selectedDemographic === "age" ? " y.o." : ""}
               </p>
