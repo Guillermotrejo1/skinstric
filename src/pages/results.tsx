@@ -17,9 +17,9 @@ const Results = () => {
   const router = useRouter();
   const [cameraPromptVisible, setCameraPromptVisible] = useState(false);
 
-  const handleFaceScanClick = () => {
-    setCameraPromptVisible(true);
-  };
+  // const handleFaceScanClick = () => {
+  //   setCameraPromptVisible(true);
+  // };
 
   const handleCameraPermissionChange = (visible: boolean) => {
     setCameraPromptVisible(visible);

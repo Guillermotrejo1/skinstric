@@ -35,7 +35,6 @@ const Test = () => {
 
     setError("");
 
-    // Handle submission
     if (currentQuestionIndex === questions.length - 1) {
       setSubmissionStatus("processing");
       try {

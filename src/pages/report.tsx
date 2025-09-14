@@ -35,7 +35,6 @@ const Report = () => {
     }
   }, []);
 
-  // Get sorted keys for each category
   const sortedRaces = demographics?.race
     ? Object.keys(demographics.race).sort(
         (a, b) => demographics.race[b] - demographics.race[a]
@@ -48,7 +47,6 @@ const Report = () => {
       )
     : [];
 
-  // Top values for each category
   const topValues = {
     race: sortedRaces[0] || "",
     age: demographics?.age
@@ -67,13 +65,11 @@ const Report = () => {
       ? ageOrder
       : sortedGenders;
 
-  // For progress bar label
   const progressLabel =
     selectedOption !== null && sortedList[selectedOption]
       ? sortedList[selectedOption]
       : sortedList[0] || "";
 
-  // For progress bar value
   const progressValue =
     demographics &&
     progressLabel &&
@@ -107,13 +103,11 @@ const Report = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [demographics, selectedDemographic]);
 
-  // Handle click on category (Race, Age, Sex)
   const handleCategoryClick = (category: DemographicCategory) => {
     setSelectedDemographic(category);
     setSelectedOption(null);
   };
 
-  // Handle click on option in the list
   const handleUpdateDemographic = (option: string) => {
     setSelectedOption(sortedList.indexOf(option));
   };
@@ -122,7 +116,6 @@ const Report = () => {
   const circumference = 2 * Math.PI * radius;
   const offset = circumference - (percentage / 100) * circumference;
 
-  // Helper for display
   const getDisplayValue = (category: DemographicCategory, value: string) => {
     if (!demographics) return "-";
     if (category === "race") {
