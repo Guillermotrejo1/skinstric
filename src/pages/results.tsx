@@ -64,7 +64,7 @@ const Results = () => {
       {loading && (
         <div className="fixed inset-0 bg-opacity-30 flex items-center justify-center z-50">
           <div className="flex flex-col items-center justify-center">
-            <p className="text-sm text-gray-400 tracking-wider uppercase mb-1">
+            <p className="text-sm text-black tracking-wider uppercase mb-1">
               PREPARING YOUR ANALYSIS...
             </p>
             <div>
