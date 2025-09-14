@@ -11,42 +11,59 @@ const Capture = () => {
   const [image, setImage] = useState<string | ArrayBuffer | null>(null);
   const [, setDemographics] = useState<Demographics | null>(null);
   const [loading, setLoading] = useState(false);
+  const [showPreview, setShowPreview] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const router = useRouter();
 
   useEffect(() => {
-    navigator.mediaDevices
-      .getUserMedia({ video: true })
-      .then((stream) => {
-        if (videoRef.current) {
-          videoRef.current.srcObject = stream;
-        }
-      })
-      .catch((error) => {
-        console.error("Error accessing camera:", error);
-      });
-  }, []);
+    if (!showPreview) {
+      navigator.mediaDevices
+        .getUserMedia({ video: true })
+        .then((stream) => {
+          if (videoRef.current) {
+            videoRef.current.srcObject = stream;
+          }
+        })
+        .catch((error) => {
+          console.error("Error accessing camera:", error);
+        });
+    }
+  }, [showPreview]);
 
-    const captureImage = () => {
+  const captureImage = () => {
     if (videoRef.current && canvasRef.current) {
       const context = canvasRef.current.getContext("2d");
       if (context) {
-        // Set canvas dimensions to match video
         canvasRef.current.width = videoRef.current.videoWidth;
         canvasRef.current.height = videoRef.current.videoHeight;
-        
         context.drawImage(videoRef.current, 0, 0);
-        
         const base64Image = canvasRef.current.toDataURL("image/png");
-        setImage(base64Image); 
-        makeApiCall(base64Image);
+        setImage(base64Image);
+        setShowPreview(true);
+        // Pause the video stream
+        if (videoRef.current.srcObject) {
+          (videoRef.current.srcObject as MediaStream)
+            .getTracks()
+            .forEach((track) => track.stop());
+        }
       }
     }
   };
 
+  const handleRetake = () => {
+    setImage(null);
+    setShowPreview(false);
+  };
+
+  const handleUsePhoto = () => {
+    if (typeof image === "string") {
+      setLoading(true);
+      makeApiCall(image);
+    }
+  };
+
   const makeApiCall = async (base64Image: string) => {
-    setLoading(true);
     try {
       const response = await fetch(
         "https://us-central1-api-skinstric-ai.cloudfunctions.net/skinstricPhaseTwo",
@@ -62,8 +79,7 @@ const Capture = () => {
       localStorage.setItem("demographics", JSON.stringify(data.data));
       setDemographics(data.data);
 
-      alert("Image analyzed successfully");
-
+      // alert("Image analyzed successfully");
       router.push("/selecting");
     } catch (error) {
       alert("Upload failed");
@@ -77,25 +93,65 @@ const Capture = () => {
       <div className="h-[90vh] w-screen">
         <div className="relative h-[92vh] w-screen overflow-hidden bg-gray-900">
           <div className="absolute inset-0 z-10">
-            <video
-              ref={videoRef}
-              autoPlay
-              playsInline
-              className="absolute inset-0 w-full h-full object-cover"
-            ></video>
-            <canvas ref={canvasRef} className="hidden" />
-            <div className="absolute right-8 top-1/2 transform -translate-y-1/2 z-20 flex items-center space-x-3">
-              <div className="font-semibold text-sm tracking-tight leading-[14px] text-[#FCFCFC] hidden sm:block">
-                TAKE PICTURE
-              </div>
-              <div className="transform hover:scale-105 ease-in-out duration-300" onClick={captureImage}>
+            {!showPreview ? (
+              <>
+                <video
+                  ref={videoRef}
+                  autoPlay
+                  playsInline
+                  className="absolute inset-0 w-full h-full object-cover"
+                ></video>
+                <canvas ref={canvasRef} className="hidden" />
+                <div className="absolute right-8 top-1/2 transform -translate-y-1/2 z-20 flex items-center space-x-3">
+                  <div className="font-semibold text-sm tracking-tight leading-[14px] text-[#FCFCFC] hidden sm:block">
+                    TAKE PICTURE
+                  </div>
+                  <div
+                    className="transform hover:scale-105 ease-in-out duration-300"
+                    onClick={captureImage}
+                  >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src="/takePictureIcon.webp"
+                      alt=""
+                      className="w-16 h-16 cursor-pointer"
+                    />
+                  </div>
+                </div>
+              </>
+            ) : (
+              <>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/takePictureIcon.webp"
-                  alt=""
-                  className="w-16 h-16 cursor-pointer"
+                  src={typeof image === "string" ? image : ""}
+                  alt="Captured"
+                  className="absolute inset-0 w-full h-full object-cover z-10"
                 />
-              </div>
-            </div>
+
+                <div className="absolute top-8 left-1/2 transform -translate-x-1/2 z-30">
+                  <div className="bg-black bg-opacity-80 text-white px-8 py-3 rounded-full text-xl font-semibold shadow-lg">
+                    Great shot!
+                  </div>
+                </div>
+
+                <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 z-30 flex gap-6">
+                  <button
+                    className="bg-white text-black px-8 py-3 rounded-full font-semibold shadow hover:bg-gray-200 transition"
+                    onClick={handleRetake}
+                  >
+                    Retake
+                  </button>
+                  <button
+                    className="bg-[#1A1B1C] text-white px-8 py-3 rounded-full font-semibold shadow hover:bg-[#333] transition"
+                    onClick={handleUsePhoto}
+                  >
+                    Use this photo
+                  </button>
+                </div>
+              </>
+            )}
+
+            {/* ...existing bottom instructions and back button... */}
             <div className="absolute bottom-30 sm:bottom-40 left-0 right-0 text-center z-20">
               <p className="text-sm mb-2 font-normal leading-6 text-[#FCFCFC]">
                 TO GET BETTER RESULTS MAKE SURE TO HAVE
@@ -126,6 +182,21 @@ const Capture = () => {
               </div>
             </div>
           </div>
+
+          {/* Loading overlay */}
+          {loading && (
+            <div className="absolute inset-0 flex items-center justify-center bg-gray-800 bg-opacity-75 z-30">
+              <div className="bg-gray-600 text-white py-12 px-16 rounded-xl">
+                <p>Analyzing Image</p>
+                <div className="flex items-center justify-center">
+                  <span className="inline-block w-1"></span>
+                  <span className="text-7xl dot"></span>
+                  <span className="text-7xl dot"></span>
+                  <span className="text-7xl dot"></span>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </>
