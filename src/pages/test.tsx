@@ -118,7 +118,7 @@ const Test = () => {
                 setAnswers({ ...answers, [currentQuestionIndex === 0 ? "name" : "location"]: e.target.value });
                 setError("");
               }}
-              className="text-5xl sm:text-6xl font-normal text-center bg-transparent border-b border-black focus:outline-none appearance-none w-[372px] sm:w-[432px] pt-1 tracking-[-0.07em] leading-[64px] text-[#1A1B1C] z-20 relative"
+              className="text-5xl sm:text-6xl font-normal text-center bg-transparent border-b border-black focus:outline-none appearance-none w-[372px] sm:w-[432px] pt-1 tracking-[-0.07em] leading-[64px] text-[#1A1B1C] z-20 relative ml-4"
             />
             <button type="submit" className="sr-only">Submit</button>
           </form>
