@@ -18,19 +18,19 @@ const Capture = () => {
   const router = useRouter();
 
   useEffect(() => {
-    if (!showPreview) {
-      navigator.mediaDevices
-        .getUserMedia({ video: true })
-        .then((stream) => {
-          if (videoRef.current) {
-            videoRef.current.srcObject = stream;
-          }
-        })
-        .catch((error) => {
-          console.error("Error accessing camera:", error);
-        });
-    }
-  }, [showPreview]);
+  if (!showPreview) {
+    navigator.mediaDevices
+      .getUserMedia({ video: { facingMode: "user" } })
+      .then((stream) => {
+        if (videoRef.current) {
+          videoRef.current.srcObject = stream;
+        }
+      })
+      .catch((error) => {
+        console.error("Error accessing camera:", error);
+      });
+  }
+}, [showPreview]);
 
   const captureImage = () => {
     if (videoRef.current && canvasRef.current) {
@@ -100,6 +100,7 @@ const Capture = () => {
                   ref={videoRef}
                   autoPlay
                   playsInline
+                  muted
                   className="absolute inset-0 w-full h-full object-cover"
                 ></video>
                 <canvas ref={canvasRef} className="hidden" />
