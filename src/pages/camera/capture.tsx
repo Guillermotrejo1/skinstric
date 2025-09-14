@@ -183,7 +183,6 @@ const Capture = () => {
             </div>
           </div>
 
-          {/* Loading overlay */}
           {loading && (
             <div className="absolute inset-0 flex items-center justify-center bg-gray-800 bg-opacity-75 z-30">
               <div className="bg-gray-600 text-white py-12 px-16 rounded-xl">
