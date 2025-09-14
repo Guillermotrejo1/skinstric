@@ -151,7 +151,7 @@ const Capture = () => {
               </>
             )}
 
-            {/* ...existing bottom instructions and back button... */}
+            
             <div className="absolute bottom-30 sm:bottom-40 left-0 right-0 text-center z-20">
               <p className="text-sm mb-2 font-normal leading-6 text-[#FCFCFC]">
                 TO GET BETTER RESULTS MAKE SURE TO HAVE
