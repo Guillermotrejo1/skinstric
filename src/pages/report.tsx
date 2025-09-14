@@ -9,6 +9,17 @@ interface Demographics {
 }
 
 type DemographicCategory = "race" | "age" | "gender";
+const ageOrder = [
+  "0-2",
+  "3-9",
+  "10-19",
+  "20-29",
+  "30-39",
+  "40-49",
+  "50-59",
+  "60-69",
+  "70+"
+];
 
 const Report = () => {
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
@@ -32,10 +43,10 @@ const Report = () => {
     : [];
 
   const sortedAges = demographics?.age
-    ? Object.keys(demographics.age).sort(
-        (a, b) => demographics.age[a] + demographics.age[b]
-      )
-    : [];
+  ? Object.keys(demographics.age).sort(
+      (a, b) => demographics.age[b] - demographics.age[a]
+    )
+  : [];
 
   const sortedGenders = demographics?.gender
     ? Object.keys(demographics.gender).sort(
@@ -55,13 +66,12 @@ const Report = () => {
     gender: sortedGenders[0] || "",
   };
 
-  // For progress bar and list
-  const sortedList =
-    selectedDemographic === "race"
-      ? sortedRaces
-      : selectedDemographic === "age"
-      ? sortedAges
-      : sortedGenders;
+ const sortedList =
+  selectedDemographic === "race"
+    ? sortedRaces
+    : selectedDemographic === "age"
+    ? ageOrder
+    : sortedGenders;
 
   // For progress bar label
   const progressLabel =
