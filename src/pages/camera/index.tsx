@@ -1,7 +1,16 @@
 import Image from "next/image";
-import React from "react";
+import { useRouter } from "next/router";
+import React, { useEffect } from "react";
 
-const index = () => {
+const Index = () => {
+ const router = useRouter();
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      router.push('/camera/capture');
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <>
       <div className="h-[50vh] md:h-[70.3vh] flex flex-col items-center justify-center bg-white">
@@ -31,4 +40,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Index;
