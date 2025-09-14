@@ -158,8 +158,8 @@ const Capture = () => {
               </p>
               <div className="flex justify-center space-x-8 text-xs leading-6 text-[#FCFCFC]">
                 <p>◇ NEUTRAL EXPRESSION</p>
-                <p>◇ NEUTRAL EXPRESSION</p>
-                <p>◇ NEUTRAL EXPRESSION</p>
+                <p>◇ FRONTAL POSE</p>
+                <p>◇ ADEQUATE LIGHTING</p>
               </div>
             </div>
           </div>
