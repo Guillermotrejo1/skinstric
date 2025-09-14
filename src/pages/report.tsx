@@ -185,7 +185,8 @@ const Report = () => {
                 {getDisplayValue(
                   selectedDemographic,
                   topValues[selectedDemographic]
-                ) || "-"} y.o.
+                ) || "-"}
+                {selectedDemographic === "age" ? " y.o." : ""}
               </p>
               <div className="relative md:absolute w-full max-w-[384px] aspect-square mb-4 md:right-5 md:bottom-2">
                 <svg
