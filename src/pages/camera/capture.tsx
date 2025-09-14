@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useRef, useState } from "react";
 
@@ -129,20 +130,20 @@ const Capture = () => {
                 />
 
                 <div className="absolute top-8 left-1/2 transform -translate-x-1/2 z-30">
-                  <div className="bg-black bg-opacity-80 text-white px-8 py-3 rounded-full text-xl font-semibold shadow-lg">
+                  <div className="bg-black bg-opacity-80 text-white px-2 md:px-8 py-2 text-xl font-semibold shadow-lg">
                     Great shot!
                   </div>
                 </div>
 
                 <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 z-30 flex gap-6">
                   <button
-                    className="bg-white text-black px-8 py-3 rounded-full font-semibold shadow hover:bg-gray-200 transition"
+                    className="bg-white text-black px-2 md:px-8 py-2 font-semibold shadow hover:bg-gray-200 transition"
                     onClick={handleRetake}
                   >
                     Retake
                   </button>
                   <button
-                    className="bg-[#1A1B1C] text-white px-8 py-3 rounded-full font-semibold shadow hover:bg-[#333] transition"
+                    className="bg-[#1A1B1C] text-white px-2 md:px-8 py-2 font-semibold shadow hover:bg-[#333] transition"
                     onClick={handleUsePhoto}
                   >
                     Use this photo
@@ -151,20 +152,21 @@ const Capture = () => {
               </>
             )}
 
-            
-            <div className="absolute bottom-30 sm:bottom-40 left-0 right-0 text-center z-20">
-              <p className="text-sm mb-2 font-normal leading-6 text-[#FCFCFC]">
-                TO GET BETTER RESULTS MAKE SURE TO HAVE
-              </p>
-              <div className="flex justify-center space-x-8 text-xs leading-6 text-[#FCFCFC]">
-                <p>◇ NEUTRAL EXPRESSION</p>
-                <p>◇ FRONTAL POSE</p>
-                <p>◇ ADEQUATE LIGHTING</p>
+            {!showPreview && (
+              <div className="absolute bottom-30 sm:bottom-40 left-0 right-0 text-center z-20">
+                <p className="text-sm mb-2 font-normal leading-6 text-[#FCFCFC]">
+                  TO GET BETTER RESULTS MAKE SURE TO HAVE
+                </p>
+                <div className="flex justify-center space-x-8 text-xs leading-6 text-[#FCFCFC]">
+                  <p>◇ NEUTRAL EXPRESSION</p>
+                  <p>◇ FRONTAL POSE</p>
+                  <p>◇ ADEQUATE LIGHTING</p>
+                </div>
               </div>
-            </div>
+            )}
           </div>
           <div className="absolute md:bottom-8 bottom-60 left-8 z-20">
-            <a href="/result"></a>
+            <Link href="/results">
             <div>
               <div className="relative w-12 h-12 flex items-center justify-center border border-[#FCFCFC] rotate-45 scale-[1] sm:hidden">
                 <span className="rotate-[-45deg] text-xs font-semibold sm:hidden text-[#FCFCFC]">
@@ -181,6 +183,7 @@ const Capture = () => {
                 </span>
               </div>
             </div>
+            </Link>
           </div>
 
           {loading && (
