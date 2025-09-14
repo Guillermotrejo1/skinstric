@@ -30,13 +30,13 @@ const Report = () => {
         (a, b) => demographics.race[b] - demographics.race[a]
       )
     : [];
-    
+
   const sortedAges = demographics?.age
     ? Object.keys(demographics.age).sort(
         (a, b) => demographics.age[a] + demographics.age[b]
       )
     : [];
-    
+
   const sortedGenders = demographics?.gender
     ? Object.keys(demographics.gender).sort(
         (a, b) => demographics.gender[b] - demographics.gender[a]
@@ -152,7 +152,6 @@ const Report = () => {
                   category: DemographicCategory;
                 }[]
               ).map((item) => {
-                // If this category is selected, show the selected value, else show the top value
                 let displayValue = item.value;
                 if (
                   selectedDemographic === item.category &&
@@ -183,7 +182,10 @@ const Report = () => {
             </div>
             <div className="relative bg-gray-100 p-4 flex flex-col items-center justify-center md:h-[57vh] md:border-t">
               <p className="hidden md:block md:absolute text-[40px] mb-2 left-5 top-2">
-                {getDisplayValue(selectedDemographic, progressLabel) || "-"}
+                {getDisplayValue(
+                  selectedDemographic,
+                  topValues[selectedDemographic]
+                ) || "-"}
               </p>
               <div className="relative md:absolute w-full max-w-[384px] aspect-square mb-4 md:right-5 md:bottom-2">
                 <svg
