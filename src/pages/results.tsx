@@ -15,6 +15,15 @@ const Results = () => {
   const [, setDemographics] = useState<Demographics | null>(null);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const [cameraPromptVisible, setCameraPromptVisible] = useState(false);
+
+  const handleFaceScanClick = () => {
+    setCameraPromptVisible(true);
+  };
+
+  const handleCameraPermissionChange = (visible: boolean) => {
+    setCameraPromptVisible(visible);
+  };
 
   const handleImageUpload = (imageFile: File) => {
     setLoading(true);
@@ -50,7 +59,6 @@ const Results = () => {
 
       alert("Image analyzed successfully");
 
-      
       router.push("/selecting");
     } catch (error) {
       alert("Upload failed");
@@ -101,8 +109,14 @@ const Results = () => {
             <h4 className="ml-6 text-sm font-semibold">TO START ANALYSIS</h4>
           </div>
           <div className="flex-[0.4] md:flex-1 flex flex-col md:flex-row items-center lg:justify-between relative mb-40 md:mb-40 space-y-[-20px] md:space-y-0 w-full">
-            <FaceScan />
-            <GalleryAccess onImageUpload={handleImageUpload} />
+            <FaceScan onCameraPermissionChange={handleCameraPermissionChange} />
+            <GalleryAccess
+              style={{
+                opacity: cameraPromptVisible ? 0.5 : 1,
+                pointerEvents: cameraPromptVisible ? "none" : "auto",
+              }}
+              onImageUpload={handleImageUpload}
+            />
             <div className="absolute top-[-75px] right-7 md:top-0 md:right-8 transition-opacity duration-300 opacity-100">
               <h1 className="text-xs md:text-sm font-normal mb-1 text-left">
                 Preview
@@ -129,5 +143,3 @@ const Results = () => {
 };
 
 export default Results;
-
-

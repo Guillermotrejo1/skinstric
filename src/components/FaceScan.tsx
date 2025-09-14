@@ -1,17 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import ResultDiamondLarge from "./ResultDiamondLarge";
 import ResultDiamondMedium from "./ResultDiamondMedium";
 import ResultDiamondSmall from "./ResultDiamondSmall";
 import { useRouter } from "next/router";
 
-const FaceScan = () => {
+interface FaceScanProps {
+  onCameraPermissionChange: (value: boolean) => void;
+}
+
+const FaceScan: React.FC<FaceScanProps> = ({ onCameraPermissionChange }) => {
   const [showToast, setShowToast] = useState(false);
   const router = useRouter();
 
-  const handleFaceScanClick = () => {
-    setShowToast(true);
-  };
+ const handleFaceScanClick = () => {
+  setShowToast(true);
+};
+useEffect(() => {
+  if (showToast) {
+    onCameraPermissionChange(true);
+  } else {
+    onCameraPermissionChange(false);
+  }
+}, [showToast, onCameraPermissionChange]);
 
   
   const handleAllow = () => {
@@ -20,6 +31,7 @@ const FaceScan = () => {
       .then((stream) => {
         console.log("Camera access granted");
         setShowToast(false);
+        onCameraPermissionChange(false);
         router.push("/camera");
         setTimeout(() => {
           router.push("/camera/capture");
@@ -28,13 +40,15 @@ const FaceScan = () => {
       .catch((error) => {
         console.error("Camera access denied", error);
         setShowToast(false);
+        onCameraPermissionChange(false);
       });
   };
 
 
   const handleDeny = () => {
     console.log("Camera access denied");
-    setShowToast(false); 
+    setShowToast(false);
+    onCameraPermissionChange(false);
   };
 
   return (

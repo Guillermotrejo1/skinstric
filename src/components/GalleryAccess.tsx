@@ -6,9 +6,10 @@ import Image from "next/image";
 
 interface GalleryAccessProps {
   onImageUpload: (imageFile: File) => void;
+  style?: React.CSSProperties;
 }
 
-const GalleryAccess: React.FC<GalleryAccessProps> = ({ onImageUpload }) => {
+const GalleryAccess: React.FC<GalleryAccessProps> = ({ onImageUpload, style }) => {
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0]; 
     if (file) {
@@ -17,7 +18,7 @@ const GalleryAccess: React.FC<GalleryAccessProps> = ({ onImageUpload }) => {
   };
 
   return (
-    <div className="relative md:absolute md:left-[45%] lg:left-[50%] xl:left-[55%] flex flex-col items-center mt-12 md:mt-0 justify-center md:-translate-y-[0%] -translate-y-[10%] transition-opacity duration-300 opacity-100">
+    <div className="relative md:absolute md:left-[45%] lg:left-[50%] xl:left-[55%] flex flex-col items-center mt-12 md:mt-0 justify-center md:-translate-y-[0%] -translate-y-[10%] transition-opacity duration-300" style={style}>
       <div className="w-[220px] h-[220px] md:w-[482px] md:h-[482px]">
         <ResultDiamondLarge />
         <ResultDiamondMedium />
