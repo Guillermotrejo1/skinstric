@@ -113,14 +113,12 @@ const Test = () => {
               Click To Type
             </p>
           )}
-          <div className="ml-4">
             <DiamondLarge />
             <DiamondMedium />
             <DiamondSmall />
-          </div>
           {submissionStatus !== "processing" &&
             submissionStatus !== "success" && (
-              <form className="relative z-10 ml-4" onSubmit={handleSubmit}>
+              <form className="relative z-10 ml-3" onSubmit={handleSubmit}>
                 <div className="flex flex-col items-center">
                   {error && (
                     <p className="text-red-500 text-sm mb-2">{error}</p>
