@@ -18,19 +18,19 @@ const Capture = () => {
   const router = useRouter();
 
   useEffect(() => {
-  if (!showPreview) {
-    navigator.mediaDevices
-      .getUserMedia({ video: { facingMode: "user" } })
-      .then((stream) => {
-        if (videoRef.current) {
-          videoRef.current.srcObject = stream;
-        }
-      })
-      .catch((error) => {
-        console.error("Error accessing camera:", error);
-      });
-  }
-}, [showPreview]);
+    if (!showPreview) {
+      navigator.mediaDevices
+        .getUserMedia({ video: { facingMode: "user" } })
+        .then((stream) => {
+          if (videoRef.current) {
+            videoRef.current.srcObject = stream;
+          }
+        })
+        .catch((error) => {
+          console.error("Error accessing camera:", error);
+        });
+    }
+  }, [showPreview]);
 
   const captureImage = () => {
     if (videoRef.current && canvasRef.current) {
@@ -136,7 +136,7 @@ const Capture = () => {
                   </div>
                 </div>
 
-                <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 z-30 flex gap-6">
+                <div className="absolute w-full bottom-35 md:bottom-12 left-1/2 transform -translate-x-1/2 z-30 flex justify-center gap-6">
                   <button
                     className="bg-white text-black px-2 md:px-8 py-2 font-semibold shadow hover:bg-gray-200 transition"
                     onClick={handleRetake}
@@ -168,22 +168,22 @@ const Capture = () => {
           </div>
           <div className="absolute md:bottom-8 bottom-60 left-8 z-20">
             <Link href="/results">
-            <div>
-              <div className="relative w-12 h-12 flex items-center justify-center border border-[#FCFCFC] rotate-45 scale-[1] sm:hidden">
-                <span className="rotate-[-45deg] text-xs font-semibold sm:hidden text-[#FCFCFC]">
-                  BACK
-                </span>
+              <div>
+                <div className="relative w-12 h-12 flex items-center justify-center border border-[#FCFCFC] rotate-45 scale-[1] sm:hidden">
+                  <span className="rotate-[-45deg] text-xs font-semibold sm:hidden text-[#FCFCFC]">
+                    BACK
+                  </span>
+                </div>
+                <div className="group hidden sm:flex flex-row relative justify-center items-center">
+                  <div className=" w-12 h-12 hidden sm:flex justify-center border border-[#FCFCFC] rotate-45 scale-[0.85] group-hover:scale-[0.92] ease duration-300"></div>
+                  <span className="absolute left-[15px] bottom-[13px] scale-[0.9] rotate-180 hidden sm:block text-[#FCFCFC] group-hover:scale-[0.92] ease duration-300">
+                    ▶
+                  </span>
+                  <span className="text-sm font-semibold hidden sm:block ml-6 text-[#FCFCFC]">
+                    BACK
+                  </span>
+                </div>
               </div>
-              <div className="group hidden sm:flex flex-row relative justify-center items-center">
-                <div className=" w-12 h-12 hidden sm:flex justify-center border border-[#FCFCFC] rotate-45 scale-[0.85] group-hover:scale-[0.92] ease duration-300"></div>
-                <span className="absolute left-[15px] bottom-[13px] scale-[0.9] rotate-180 hidden sm:block text-[#FCFCFC] group-hover:scale-[0.92] ease duration-300">
-                  ▶
-                </span>
-                <span className="text-sm font-semibold hidden sm:block ml-6 text-[#FCFCFC]">
-                  BACK
-                </span>
-              </div>
-            </div>
             </Link>
           </div>
 
