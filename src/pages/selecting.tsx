@@ -23,12 +23,12 @@ const Selecting = () => {
         </p>
       </div>
       <div className="h-[78.3vh] flex flex-col items-center justify-center bg-white">
-        <div className="relative">
-          <div className="relative z-10 grid grid-cols-3 grid-rows-3 gap-0">
+        <div className="relative flex items-center justify-center w-full">
+          <div className="relative z-10 grid grid-cols-3 grid-rows-3 gap-2 md:gap-0">
             <div className="flex items-center justify-center col-start-2">
               <Link href="/report">
               <button
-                className="w-[153.88px] h-[153.88px] bg-gray-200 hover:bg-gray-300 transform rotate-45 flex items-center justify-center -m-5 cursor-pointer font-semibold leading-[24px] tracking-tight uppercase hover:scale-[1.05] transition-transform duration-300"
+                className="w-[123.88px] h-[123.88px] md:w-[153.88px] md:h-[153.88px] bg-gray-200 hover:bg-gray-300 transform rotate-45 flex items-center justify-center -m-5 cursor-pointer font-semibold leading-[24px] tracking-tight uppercase hover:scale-[1.05] transition-transform duration-300"
                 onMouseEnter={() => handleMouseEnter('diamond-one')}
                 onMouseLeave={handleMouseLeave}
               >
@@ -39,7 +39,7 @@ const Selecting = () => {
             </div>
             <div className="flex items-center justify-center row-start-2 col-start-1">
               <button
-                className="w-[153.88px] h-[153.88px] bg-gray-100 hover:bg-gray-300 transform rotate-45 flex items-center justify-center -m-5 font-semibold leading-[24px] tracking-tight uppercase cursor-not-allowed"
+                className="w-[123.88px] h-[123.88px] md:w-[153.88px] md:h-[153.88px] bg-gray-100 hover:bg-gray-300 transform rotate-45 flex items-center justify-center -m-5 font-semibold leading-[24px] tracking-tight uppercase cursor-not-allowed"
                 onMouseEnter={() => handleMouseEnter('diamond-two')}
                 onMouseLeave={handleMouseLeave}
               >
@@ -48,7 +48,7 @@ const Selecting = () => {
             </div>
             <div className="flex items-center justify-center row-start-2 col-start-3">
               <button
-                className="w-[153.88px] h-[153.88px] bg-gray-100 hover:bg-gray-300 transform rotate-45 flex items-center justify-center -m-5 font-semibold leading-[24px] tracking-tight uppercase cursor-not-allowed"
+                className="w-[123.88px] h-[123.88px] md:w-[153.88px] md:h-[153.88px] bg-gray-100 hover:bg-gray-300 transform rotate-45 flex items-center justify-center -m-5 font-semibold leading-[24px] tracking-tight uppercase cursor-not-allowed"
                 onMouseEnter={() => handleMouseEnter('diamond-two')}
                 onMouseLeave={handleMouseLeave}
               >
@@ -57,7 +57,7 @@ const Selecting = () => {
             </div>
             <div className="flex items-center justify-center row-start-3 col-start-2">
               <button
-                className="w-[153.88px] h-[153.88px] bg-gray-200 hover:bg-gray-300 transform rotate-45 flex items-center justify-center -m-5 cursor-pointer font-semibold leading-[24px] tracking-tight uppercase hover:scale-[1.05] transition-transform duration-300"
+                className="w-[123.88px] h-[123.88px] md:w-[153.88px] md:h-[153.88px] bg-gray-200 hover:bg-gray-300 transform rotate-45 flex items-center justify-center -m-5 cursor-pointer font-semibold leading-[24px] tracking-tight uppercase hover:scale-[1.05] transition-transform duration-300"
                 onMouseEnter={() => handleMouseEnter('diamond-three')}
                 onMouseLeave={handleMouseLeave}
               >
