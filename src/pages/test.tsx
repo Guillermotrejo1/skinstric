@@ -104,7 +104,7 @@ const Test = () => {
                 Thank you!
               </p>
               <p className="text-gray-600 text-lg">Proceed for the next step</p>
-              <div className="absolute bottom-[-346px] right-0">
+              <div className="absolute bottom-[-340px] right-0">
                 <ProceedButton />
               </div>
             </div>
