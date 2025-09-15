@@ -4,12 +4,12 @@ import React, { useEffect } from "react";
 
 const Index = () => {
  const router = useRouter();
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      router.push('/camera/capture');
-    }, 3000);
-    return () => clearTimeout(timer);
-  }, []);
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     router.push('/camera/capture');
+  //   }, 3000);
+  //   return () => clearTimeout(timer);
+  // }, []);
 
   return (
     <>
@@ -31,9 +31,9 @@ const Index = () => {
       <div className="w-full flex flex-col items-center justify-center mb-8 max-w-[600px] md:max-w-full">
         <p className="mb-6 text-sm md:text-[16px]">TO GET BETTER RESULTS MAKE SURE TO HAVE</p>
         <div className="flex justify-between w-full max-w-[600px] mb-4 px-6">
-          <p className="text-xs md:text-[16px]">◇ NEUTRAL EXPRESSION</p>
-          <p className="text-xs md:text-[16px]">◇ FRONTAL POSE</p>
-          <p className="text-xs md:text-[16px]">◇ ADEQUATE LIGHTING</p>
+          <p className="text-xs md:text-[16px] text-center">◇ NEUTRAL EXPRESSION</p>
+          <p className="text-xs md:text-[16px] text-center">◇ FRONTAL POSE</p>
+          <p className="text-xs md:text-[16px] text-center">◇ ADEQUATE LIGHTING</p>
         </div>
       </div>
     </>
