@@ -104,7 +104,7 @@ const Test = () => {
                 Thank you!
               </p>
               <p className="text-gray-600 text-lg">Proceed for the next step</p>
-              <div className="absolute bottom-[-420px] right-0">
+              <div className="absolute bottom-[-346px] right-0">
                 <ProceedButton />
               </div>
             </div>
@@ -113,9 +113,9 @@ const Test = () => {
               Click To Type
             </p>
           )}
-            <DiamondLarge />
-            <DiamondMedium />
-            <DiamondSmall />
+          <DiamondLarge />
+          <DiamondMedium />
+          <DiamondSmall />
           {submissionStatus !== "processing" &&
             submissionStatus !== "success" && (
               <form className="relative z-10 ml-3" onSubmit={handleSubmit}>
@@ -141,7 +141,7 @@ const Test = () => {
                     });
                     setError("");
                   }}
-                  className="text-5xl sm:text-6xl font-normal text-center bg-transparent border-b border-black focus:outline-none appearance-none w-[372px] sm:w-[432px] pt-1 tracking-[-0.07em] leading-[64px] text-[#1A1B1C] z-20 relative ml-4"
+                  className="text-5xl sm:text-6xl font-normal text-center bg-transparent border-b border-black focus:outline-none appearance-none w-[372px] sm:w-[432px] pt-1 tracking-[-0.07em] leading-[64px] text-[#1A1B1C] z-20 relative"
                 />
                 <button type="submit" className="sr-only">
                   Submit
