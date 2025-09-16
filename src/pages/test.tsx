@@ -104,7 +104,7 @@ const Test = () => {
         <DiamondSmall />
         {submissionStatus !== "processing" && submissionStatus !== "success" && (
           <form className="relative z-10 ml-4" onSubmit={handleSubmit}>
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center mx-auto">
               {error && <p className="text-red-500 text-sm mb-2">{error}</p>}
             </div>
             <input
