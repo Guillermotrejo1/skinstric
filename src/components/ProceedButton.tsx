@@ -4,7 +4,7 @@ import React from "react";
 const ProceedButton = () => {
   return (
   <div
-    className="absolute right-10 md:right-30 w-full bottom-80 md:bottom-8 flex justify-between md:px-9 px-13 fade-in-jump"
+    className="absolute right-10 md:right-30 w-full bottom-32 md:bottom-8 flex justify-between md:px-9 px-13 fade-in-jump"
   >
     <Link href="/results" aria-label="Proceed" className="inset-0">
       <div className="relative w-12 h-12 flex items-center justify-center border border-[#1A1B1C] rotate-45 scale-[1] md:hidden">
