@@ -77,7 +77,7 @@ const Test = () => {
       <div className="absolute top-16 left-2 text-left">
         <h4 className="ml-6 text-xs font-semibold">TO START ANALYSIS</h4>
       </div>
-      <div className="relative flex flex-col items-center justify-center mb-40 w-full h-full">
+      <div className="relative flex flex-col items-center justify-center mb-40 w-full h-full mx-auto">
         {submissionStatus === "processing" ? (
           <div className="flex flex-col">
             <p className="text-sm text-gray-400 tracking-wider uppercase mb-1">Processing submission</p>
