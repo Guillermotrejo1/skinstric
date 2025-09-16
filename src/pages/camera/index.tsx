@@ -3,13 +3,13 @@ import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 
 const Index = () => {
-//  const router = useRouter();
-//   useEffect(() => {
-//     const timer = setTimeout(() => {
-//       router.push('/camera/capture');
-//     }, 3000);
-//     return () => clearTimeout(timer);
-//   }, []);
+ const router = useRouter();
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      router.push('/camera/capture');
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <>
