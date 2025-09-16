@@ -73,7 +73,7 @@ useEffect(() => {
             <Image
               width={70}
               height={88}
-              src="/resScanLine.webp"
+              src="/ResScanLine.webp"
               alt=""
               className="absolute hidden md:block md:right-[138px] md:top-4"
             />
